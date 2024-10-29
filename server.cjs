@@ -41,7 +41,7 @@ app.get('/download', async (req, res) => {
         const title = info.videoDetails.title;
         const duration = info.videoDetails.lengthSeconds; // durasi dalam detik
         const thumbnailUrl = info.videoDetails.thumbnails[0].url; // Mengambil thumbnail terbesar
-        const media = info.videoDetails.media.url;
+        const media = info.videoDetails.media;
         res.json({
             success: true,
             message: 'Kode berjalan dengan baik!',
