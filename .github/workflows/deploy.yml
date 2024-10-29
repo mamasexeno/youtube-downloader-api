@@ -35,7 +35,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "mamasexeno-youtube-dow-73"
-          entrypoint: "server.js"
+          entrypoint: "server.cjs"
           root: ""
           
           
