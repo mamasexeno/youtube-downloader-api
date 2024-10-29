@@ -36,6 +36,6 @@ jobs:
         with:
           project: "mamasexeno-youtube-dow-73"
           entrypoint: "server.cjs"
-          root: ""
+          root: "/src"
           
           
