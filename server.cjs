@@ -18,7 +18,7 @@ app.get('/formats', async (req, res) => {
     try {
         const info = await ytdl.getInfo(videoUrl);
         //const formats = info.formats;
-        const mp4 = ytdl.chooseFormat(info.formats, { container: 'mp4' });
+        let mp4 = ytdl.filterFormats(info.formats, 'videoonly');
         const hd = ytdl.chooseFormat(info.formats, { quality: '136' });
 
         res.json({
