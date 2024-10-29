@@ -16,8 +16,9 @@ app.get('/formats', async (req, res) => {
     }
 
     try {
-        const info = await ytdl.getInfo(videoUrl,{ filter: format => format.quality === '720p' });
-        const formats = info.formats;
+        const info = await ytdl.getInfo(videoUrl);
+        //const formats = info.formats;
+        const formats = info.chooseFormat(info.formats, { quality: '720 });
 
         res.json({
             success: true,
