@@ -54,7 +54,7 @@ app.get('/download', async (req, res) => {
         return res.status(500).json({ error: 'Gagal mengambil video' });
     }
 });
-app.get('/', async (req, res) => {
+app.get('/thumbnail', async (req, res) => {
     const { url } = req.query;
 
     if (!url) {
