@@ -18,15 +18,14 @@ app.get('/formats', async (req, res) => {
     try {
         const info = await ytdl.getInfo(videoUrl);
         //const formats = info.formats;
-        const info2 = await ytdl.getInfo(videoUrl);
-        const formats = info2.formats;
-        let mp4 = ytdl.filterFormats(info.formats, { container: 'mp4' });
+        let mp4 = ytdl.filterFormats(info.formats, 'videoonly');
         const hd = ytdl.chooseFormat(info.formats, { quality: '136' });
-
+        const mp4Format = mp4.find(format => format.container === 'mp4');
+        
         res.json({
             success: true,
             message: 'Format video berhasil diambil!',
-            mp4: mp4,
+            mp4: mp4Format,
             hd: hd
         });
     } catch (error) {
