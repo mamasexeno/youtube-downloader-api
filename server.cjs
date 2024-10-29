@@ -16,7 +16,7 @@ app.get('/formats', async (req, res) => {
     }
 
     try {
-        const info = await ytdl.getInfo(videoUrl);
+        const info = await ytdl.getInfo(videoUrl,quality: 'highest');
         const formats = info.formats;
 
         res.json({
