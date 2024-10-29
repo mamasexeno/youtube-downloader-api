@@ -18,11 +18,13 @@ app.get('/formats', async (req, res) => {
     try {
         const info = await ytdl.getInfo(videoUrl);
         //const formats = info.formats;
+        const detail = ytdl(url, { filter: format => format.quality === '720p' });
         const formats = ytdl.chooseFormat(info.formats, { quality: '720p' });
 
         res.json({
             success: true,
             message: 'Format video berhasil diambil!',
+            detail: detail,
             formats: formats
         });
     } catch (error) {
