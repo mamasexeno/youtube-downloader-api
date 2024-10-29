@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const formatsRouter = require('./src/routes/formats');
-const downloadRouter = require('./src/routes/download');
-const thumbnailRouter = require('./src/routes/thumbnail');
+const formatsRouter = require('./routes/formats');
+const downloadRouter = require('./routes/download');
+const thumbnailRouter = require('./routes/thumbnail');
 
 //use route
 app.use(express.json());
