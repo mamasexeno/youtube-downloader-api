@@ -25,6 +25,7 @@ app.get('/formats', async (req, res) => {
         res.json({
             success: true,
             message: 'Format video berhasil diambil!',
+            all: mp4,
             mp4: mp4Format,
             hd: hd
         });
