@@ -8,7 +8,7 @@ console.log('Current working directory:', __dirname);
 //use route
 app.use(express.json());
 app.use(cors());
-app.get('/formats', async (req, res) => {
+app.get('/download', async (req, res) => {
     const videoUrl = req.query.url;
 
     if (!videoUrl) {
@@ -18,7 +18,7 @@ app.get('/formats', async (req, res) => {
     try {
         const info = await ytdl.getInfo(videoUrl);
         //const formats = info.formats;
-        let mp4 = ytdl.filterFormats(info.formats, 'video');
+        let mp4 = info.formats;
         const hd = ytdl.chooseFormat(info.formats, { quality: '136' });
         const mp4Format = mp4.find(format => format.container === 'mp4');
         
@@ -26,15 +26,14 @@ app.get('/formats', async (req, res) => {
             success: true,
             message: 'Format video berhasil diambil!',
             all: mp4,
-            mp4: mp4Format,
-            hd: hd
+            VidioAudio: hd
         });
     } catch (error) {
         console.error('Error fetching formats:', error);
         return res.status(500).json({ error: 'Gagal mengambil format video' });
     }
 });
-app.get('/download', async (req, res) => {
+app.get('/info', async (req, res) => {
     const videoUrl = req.query.url;
 
     if (!videoUrl) {
@@ -49,7 +48,7 @@ app.get('/download', async (req, res) => {
         const media = info.videoDetails.media;
         res.json({
             success: true,
-            message: 'Kode berjalan dengan baik!',
+            message: 'Success!',
             title: title,
             duration: duration,
             media: media,
