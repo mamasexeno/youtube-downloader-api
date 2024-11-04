@@ -12,7 +12,7 @@ app.get('/download', async (req, res) => {
     const videoUrl = req.query.url;
 
     if (!videoUrl) {
-        return res.status(400).json({ error: 'URL tidak valid' });
+        return res.status(400).json({ error: 'Invalid URL' });
     }
 
     try {
@@ -24,13 +24,13 @@ app.get('/download', async (req, res) => {
         
         res.json({
             success: true,
-            message: 'Format video berhasil diambil!',
+            message: 'Video format successfully retrieved!',
             all: mp4,
             VidioAudio: hd
         });
     } catch (error) {
-        console.error('Error fetching formats:', error);
-        return res.status(500).json({ error: 'Gagal mengambil format video' });
+        console.error('Error fetching video formats:', error);
+        return res.status(500).json({ error: 'Failed to fetch video format' });
     }
 });
 app.get('/info', async (req, res) => {
@@ -55,8 +55,8 @@ app.get('/info', async (req, res) => {
             thumbnail: thumbnailUrl
         });
     } catch (error) {
-        console.error('Error fetching video:', error);
-        return res.status(500).json({ error: 'Gagal mengambil video' });
+        console.error('Error fetching info video:', error);
+        return res.status(500).json({ error: 'Failed to take info video' });
     }
 });
 app.get('/thumbnail', async (req, res) => {
@@ -65,7 +65,7 @@ app.get('/thumbnail', async (req, res) => {
     if (!url) {
         return res.status(400).json({
             success: false,
-            message: 'URL tidak ditemukan!',
+            message: 'URL not found!',
         });
     }
 
@@ -75,18 +75,21 @@ app.get('/thumbnail', async (req, res) => {
 
         return res.json({
             success: true,
-            message: 'Thumbnail berhasil diambil!',
+            message: 'Thumbnail successfully retrieved!',
             thumbnail: thumbnailUrl,
         });
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Gagal mengambil thumbnail!',
+            message: 'Failed to fetch thumbnail!',
         });
     }
 });
 app.get('/', (req, res) => {
-    res.status(200).send(`sukses`);
+    res.status(200).send(`success`);
+});
+app.get('/ping', (req, res) => {
+    res.status(200).send(`success`);
 });
 
 app.listen(PORT, () => {
