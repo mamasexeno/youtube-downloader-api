@@ -89,7 +89,7 @@ app.get('/', (req, res) => {
     res.status(200).send(`success`);
 });
 app.get('/ping', (req, res) => {
-    res.status(200).send(`success`);
+    res.status(200).send('Ping successful');
 });
 
 app.listen(PORT, () => {
